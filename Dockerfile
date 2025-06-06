@@ -11,9 +11,11 @@ RUN ./scripts/acceptance.sh
 # Choose alpine as a base image to make this useful for CI, as many
 # CI tools expect an interactive shell inside the container
 FROM alpine:3 AS production
-LABEL maintainer="Mike Farah <mikefarah@users.noreply.github.com>"
+LABEL maintainer="bassbenberlin <bassbenberlin@users.noreply.github.com>"
 
 COPY --from=builder /go/src/mikefarah/yq/yq /usr/bin/yq
+
+RUN apk add --no-cache git
 
 WORKDIR /workdir
 
